@@ -40,21 +40,17 @@ wheelradius.send_keys('2.75')
 submit_button = driver.find_element_by_xpath('/html/body/div[2]/div[1]/form/input[7]')
 submit_button.click()'''
 
-time.sleep(5)
+time.sleep(2)
 
 
-@pytest.fixture
-def input_value():
-    input = '3.92'
-    return input
+'''reminder: text_field id's = motorKV, battVolt, pinion, spur, fgr, wheelradius, submit-value=calculate
 
-@pytest.fixture
-def text_field():
-    field = fgr
-    return field
+parameterized tests to check text_field entry'''
 
-
-def test_textInput(text_field, input_value):
+@pytest.mark.parametrize('text_field, input_value', [(motorkV, '2400'), (battVolt, '16.8'), (pinion, '18'), (spur, '50'),
+                                                     (fgr, '3.92'), (wheelradius, '2.75')])
+def test_text_input(text_field, input_value):
     assert text_field.get_attribute("value") == input_value
 
-#test_textInput(fgr, '3.92')  #this test doesn't work.  Can't figure out why the attribute value isn't finding the text'''
+def test_text_input_blank():
+    pass
