@@ -39,7 +39,6 @@ wheelradius.send_keys('2.75')
 calculated_speed = driver.find_element(By.CLASS_NAME, 'calculated').get_attribute('innerText')'''
 
 
-
 '''The following 2 lines automatically click submit on the form  -- when I use this and click submit, then I get
 staleElementReferenceException.
 
@@ -49,7 +48,7 @@ submit_button.click()'''
 calculated_speed = driver.find_element(By.CLASS_NAME, 'calculated').get_attribute('innerText')
 
 
-time.sleep(2)
+time.sleep(1)
 
 
 '''reminder: text_field id's = motorKV, battVolt, pinion, spur, fgr, wheelradius, submit-value=calculate
@@ -67,3 +66,6 @@ def cal_output():
 
 def test_calculated_speed_is_blank(cal_output):
     assert cal_output == ""
+
+def test_calculated_speed_is_displayed(cal_output):
+    assert cal_output != ""
