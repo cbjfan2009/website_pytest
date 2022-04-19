@@ -51,9 +51,10 @@ calculated_speed = driver.find_element(By.CLASS_NAME, 'calculated').get_attribut
 time.sleep(1)
 
 
-'''reminder: text_field id's = motorKV, battVolt, pinion, spur, fgr, wheelradius, submit-value=calculate
+# reminder: text_field id's = motorKV, battVolt, pinion, spur, fgr, wheelradius, submit-value=calculate
 
-parameterized tests to check text_field entry'''
+
+#parameterized tests to check text_field entry
 
 @pytest.mark.parametrize('text_field, input_value', [(motorkV, '2400'), (battVolt, '16.8'), (pinion, '18'), (spur, '50'),
                                                      (fgr, '3.92'), (wheelradius, '2.75')])
@@ -69,3 +70,12 @@ def test_calculated_speed_is_blank(cal_output):
 
 def test_calculated_speed_is_displayed(cal_output):
     assert cal_output != ""
+
+'''Here is the stuff that changes me to the next webpage'''
+
+
+about_link = driver.find_element(By.XPATH, '/html/body/div[1]/a[2]')
+about_link.click()
+
+def test_click_about(): #click the header link to open about page and check for presence of expected elements
+    assert driver.find_elements(By.CLASS_NAME, 'about-my-slash')
